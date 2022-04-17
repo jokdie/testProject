@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "8080:80"
+      - "4433:443"
+    volumes:
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d
+      - ./docker/nginx/logs:/var/log/nginx
+      - ./src:/var/www/app
+    depends_on:
+      - app
+    container_name: project_nginx
+  app:
+    build: ./docker/app
+    restart: always
+    volumes:
+      - ./src:/var/www/app
+    depends_on:
+      - db
+      - adminer
+      - redis
+    container_name: project_app
+  db:
+    image: mysql:8
+    restart: always
+    # Порт не используем, тк извне подключаться в БД не будем -> ставим Adminer
+    # ports:
+      # - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: projectdb
+    volumes:
+      # если нужно физически файлы на ЖД то
+      # - ./tmp/db:/var/lib/mysql
+      # либо в окружении докера
+      - mysql_data:/var/lib/mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    container_name: project_db
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8888:8080'
+    container_name: project_adminer
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      # - ./tmp/redis:/data
+      - redis_data:/data
+    container_name: project_redis
+volumes:
+  mysql_data:
+  redis_data:
