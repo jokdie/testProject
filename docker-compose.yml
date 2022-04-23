@@ -6,6 +6,7 @@ services:
     restart: always
     ports:
       - "8080:80"
+      - "8088:88"
       - "4433:443"
     volumes:
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d
