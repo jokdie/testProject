@@ -5,7 +5,7 @@ namespace App\Services\LanguageService;
 
 use Illuminate\Support\Facades\App;
 
-class LanguageService
+class LanguageService implements LanguageServiceInterface
 {
     private string $id;
 

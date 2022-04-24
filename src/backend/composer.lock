@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "12524947d8c752f84bc21aaaede06bfa",
+    "content-hash": "d0646c62a428072609de4b9b6029c839",
     "packages": [
         {
             "name": "brick/math",
@@ -4814,6 +4814,53 @@
                 }
             ],
             "time": "2022-03-02T12:58:14+00:00"
+        },
+        {
+            "name": "tabgeo/country",
+            "version": "1.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dostelon/TabGeo.git",
+                "reference": "b1da7318cffb6d1e12817b9995f7971872285f18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dostelon/TabGeo/zipball/b1da7318cffb6d1e12817b9995f7971872285f18",
+                "reference": "b1da7318cffb6d1e12817b9995f7971872285f18",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/TabGeo/country.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vasili Yurkevich",
+                    "email": "dostelon@gmail.com"
+                }
+            ],
+            "description": "geoip (only countries) php library (http://tabgeo.com)",
+            "keywords": [
+                "countrycode",
+                "geoip",
+                "geolocation",
+                "location",
+                "tabgeo"
+            ],
+            "support": {
+                "issues": "https://github.com/dostelon/TabGeo/issues",
+                "source": "https://github.com/dostelon/TabGeo/tree/master"
+            },
+            "time": "2016-04-04T07:54:13+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

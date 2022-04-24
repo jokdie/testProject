@@ -1,4 +1,7 @@
 {
     "Привет, Мир!": "Hello, World!",
-    "Привет": "Hello"
+    "Привет": "Hello",
+    "Коля {0} {1}": "Kola {0} {1}",
+    "Трактор {0} где {name}": "Tractor {0} where {name}",
+    "Трактор {long} где {name}": "Tractor {long} where {name}"
 }

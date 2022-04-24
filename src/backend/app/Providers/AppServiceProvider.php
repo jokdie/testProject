@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Services\CountryService\CountryService;
+use App\Services\CountryService\CountryServiceInterface;
+use App\Services\LanguageService\LanguageConsts;
 use App\Services\LanguageService\LanguageService;
-use App\Services\TranslationService\TranslationService;
+use App\Services\LanguageService\LanguageServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,14 +18,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(LanguageService::class, function ($app) {
-            $locale = $app['config']['app.locale'];
+        $this->app->singleton(LanguageServiceInterface::class, function ($app) {
+            $currentLocale = $app['config']['app.locale'];
+            $locale = empty($currentLocale) ? LanguageConsts::CODE_RU : $currentLocale;
 
             return new LanguageService($locale);
         });
 
-        $this->app->singleton(TranslationService::class, function () {
-            return new TranslationService();
+        $this->app->singleton(CountryServiceInterface::class, function ($app) {
+            $country = 'ru';
+
+            return new CountryService($country);
         });
     }
 

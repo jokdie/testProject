@@ -9,20 +9,24 @@ use Illuminate\Support\Facades\Lang;
 
 class TranslationService
 {
-    public function _($key = null, $replace = [], $locale = null): ?string
+    public function _(string $strForTranslate, array $replaces = []): string
     {
-        if (is_null($key)) {
-            return $key;
-        }
+        $targets = array_keys($replaces);
 
-        if (!Lang::has($key)) {
+        if (!Lang::has($strForTranslate)) {
             if (App::getLocale() === LanguageConsts::CODE_RU) {
-                return trans($key, $replace, $locale);
+                $translatedStr = trans($strForTranslate, [], null);
+            } else {
+                $translatedStr = trans($strForTranslate, [], LanguageConsts::CODE_EN);
             }
-
-            return trans($key, $replace, LanguageConsts::CODE_EN);
+        } else {
+            $translatedStr = trans($strForTranslate, [], null);
         }
 
-        return trans($key, $replace, $locale);
+        foreach ($targets as &$target) {
+            $target = "{{$target}}";
+        }
+
+        return str_replace($targets, $replaces, $translatedStr);
     }
 }

@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\MyFirstController;
+use App\Http\Controllers\TranslateTestController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function (Request $request) {
+    dd($request);
+});
 
-Route::get('/', [MyFirstController::class, 'index']);
+Route::get('/translate', [TranslateTestController::class, 'index']);
 
 Route::get('/change-locale', [MainController::class, 'changeLocale'])->name('locale');

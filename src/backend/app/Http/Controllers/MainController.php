@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Services\LanguageService\LanguageService;
+use App\Services\LanguageService\LanguageServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
 class MainController extends Controller
 {
-    protected LanguageService $languageService;
+    protected LanguageServiceInterface $languageService;
 
-    public function __construct(LanguageService $languageService)
+    public function __construct(LanguageServiceInterface $languageService)
     {
         $this->languageService = $languageService;
     }
