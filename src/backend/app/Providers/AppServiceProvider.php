@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton(CountryServiceInterface::class, function ($app) {
+            // todo: реализация получения айпи юзера -> получение кода страны
             $country = 'ru';
 
             return new CountryService($country);
