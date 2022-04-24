@@ -7,6 +7,7 @@ use App\Services\CountryService\CountryServiceInterface;
 use App\Services\LanguageService\LanguageConsts;
 use App\Services\LanguageService\LanguageService;
 use App\Services\LanguageService\LanguageServiceInterface;
+use App\Services\TranslationService\TranslationService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -39,6 +40,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->bind('T', TranslationService::class);
     }
 }
