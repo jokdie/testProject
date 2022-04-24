@@ -20,7 +20,6 @@ return new class extends Migration {
             $table->string('name', 128);
             $table->string('article', 128);
             $table->decimal('price')->default(0);
-            $table->foreignId('category_id')->constrained();
             $table->text('description')->nullable();
             $table->string('imgUrl')->nullable();
             $table->boolean('is_active')->default(false);

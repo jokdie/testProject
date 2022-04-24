@@ -23,7 +23,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('is_active')->default(true);
-            $table->foreignId('role_id')->constrained();
+            //$table->integer('role_id')->unsigned()->default(1);
+            //$table->foreign('role_id')->references('role_id')->on('roles');
             $table->rememberToken();
             $table->timestamps();
         });

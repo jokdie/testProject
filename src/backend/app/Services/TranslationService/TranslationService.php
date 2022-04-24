@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\Lang;
 
 class TranslationService
 {
-    public function _(string $strForTranslate, array $replaces = []): string
+    public function _(string $strForTranslate, array $dynamicData = []): string
     {
-        $targets = array_keys($replaces);
-
         if (!Lang::has($strForTranslate)) {
             if (App::getLocale() === LanguageConsts::CODE_RU) {
                 $translatedStr = trans($strForTranslate, [], null);
@@ -23,10 +21,14 @@ class TranslationService
             $translatedStr = trans($strForTranslate, [], null);
         }
 
-        foreach ($targets as &$target) {
-            $target = "{{$target}}";
+        if (!empty($dynamicData)) {
+            $replacesData = array_map(function ($replaceDataKey): string {
+                return "{{$replaceDataKey}}";
+            }, array_keys($dynamicData));
+
+            $translatedStr = str_replace($replacesData, $dynamicData, $translatedStr);
         }
 
-        return str_replace($targets, $replaces, $translatedStr);
+        return $translatedStr;
     }
 }

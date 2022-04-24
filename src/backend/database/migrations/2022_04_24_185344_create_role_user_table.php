@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('role_user', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_unicode_ci';
             $table->id();
-            $table->unsignedBigInteger('role_id')->default(1);
-            $table->string('role', 20);
+            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('role_id')->unsigned();
+            $table->foreign('role_id')->references('role_id')->on('roles');
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('role_user');
     }
 };
