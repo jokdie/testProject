@@ -18,6 +18,11 @@ RUN apt-get update && apt-get install -y \
 
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
 
+# install phpredis
+RUN pecl install -o -f redis \
+    && rm -rf /tmp/pear \
+    && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
+
 # nvm environment variables
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 16.14.2
