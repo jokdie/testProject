@@ -5,9 +5,9 @@ services:
     image: nginx:latest
     restart: always
     ports:
-      - "8080:80"
-      - "8088:88"
-      - "4433:443"
+      - '8080:80'
+      - '8088:88'
+      - '4433:443'
     volumes:
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d
       - ./docker/nginx/logs:/var/log/nginx
@@ -20,6 +20,9 @@ services:
   app:
     build: ./docker/app
     restart: always
+    # for xdebug
+    #ports:
+    #  - '9003:9003'
     volumes:
       - ./src:/var/www/app
     depends_on:
